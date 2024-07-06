@@ -1,3 +1,9 @@
+## Solidity by Example
+These are some tests that I wrote while learning Solidity on the [Solidity By Example](https://solidity-by-example.org/)
+
+I kept the tests and src code in the same file for simplicity.
+
+
 ## Foundry
 
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
