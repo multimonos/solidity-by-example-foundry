@@ -5,7 +5,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {SimpleStorage} from "../src/ReadAndWriteState.sol";
 
 
-contract TestSimpleStorage is Test {
+contract SimpleStorageTest is Test {
 
     SimpleStorage public x;
 
@@ -22,4 +22,3 @@ contract TestSimpleStorage is Test {
         assertTrue(x.get() == 42);
     }
 }
-
