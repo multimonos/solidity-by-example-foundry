@@ -2,19 +2,26 @@
 pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
+import {EtherAndWei} from "../src/EtherAndWei.sol";
 
 
-contract TestEtherAndWei is Test {
-    function test_one_wei_is_1() public pure {
-        assertTrue(1 wei == 1);
+contract EtherAndWeiTest is Test {
+
+    EtherAndWei public obj;
+
+    function setUp() external {
+        obj = new EtherAndWei();
     }
 
-    function test_one_gwei() public pure {
-        assertTrue(1e9 == 1 gwei);
+    function test_one_wei_is_1() public view {
+        assertTrue(obj.oneWei() == 1);
     }
 
-    function test_one_ether() public pure {
-        assertTrue(1e18 == 1 ether);
+    function test_one_gwei() public view {
+        assertTrue(obj.oneGwei() == 1e9);
+    }
+
+    function test_one_ether() public view {
+        assertTrue(obj.oneEther() == 1e18);
     }
 }
-
