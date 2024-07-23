@@ -2,8 +2,19 @@
 pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
+import {Loop} from "../src/Loop.sol";
 
-contract TestLoops is Test {
+contract LoopsTest is Test {
+
+    Loop public obj;
+
+    function setUp() external {
+        obj = new Loop();
+    }
+
+    function test_loop() public {
+        assertTrue(obj.loop() == 10);
+    }
 
     function test_for_loop() public pure {
         uint n = 0;
@@ -30,8 +41,8 @@ contract TestLoops is Test {
         do {
             n = i;
             i++;
-        }
-        while (i < 5);
+        } while (i < 5);
+
         assertTrue(n == 4);
     }
 }

@@ -2,8 +2,26 @@
 pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
+import {IfElse} from "../src/IfElse.sol";
 
-contract TestIfElse is Test {
+contract IfElseTest is Test {
+
+    IfElse public obj;
+
+    function setUp() external {
+        obj = new IfElse();
+    }
+
+    function test_foo() public view {
+        assertEq(obj.foo(5), 0);
+        assertEq(obj.foo(11), 1);
+        assertEq(obj.foo(50), 2);
+    }
+
+    function test_ternary() public view {
+        assertTrue(obj.ternary(5) == 1);
+        assertTrue(obj.ternary(30) == 2);
+    }
 
     function test_if_true() public pure {
         uint x = 0;
