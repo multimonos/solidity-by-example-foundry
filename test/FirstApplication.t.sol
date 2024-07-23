@@ -2,61 +2,47 @@
 pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
+import {FirstApplication} from "../src/FirstApplication.sol";
 
-contract Counter {
 
-    uint256 public count;
+contract FirstApplicationTest is Test {
 
-    /// @dev get the current count
-    function get() public view returns (uint256) {
-        return count;
+    FirstApplication public obj;
+
+    function setUp() external {
+        obj = new FirstApplication();
     }
 
-    /// @dev increment count by 1
-    function inc() public {
-        count += 1;
+    function test_has_magic_count_method() public view {
+        assertEq(obj.count(), 0);
     }
 
-    /// @dev decrement count by 1
-    function dec() public {
-        count -= 1;
-    }
-}
-
-
-contract TestCounter is Test {
-
-    function test_initial_counter_is_zero() public {
-        Counter counter = new Counter();
-        assertEq(counter.count(), 0);
+    function test_initial_count_is_zero() public view {
+        assertEq(obj.count(), 0);
     }
 
-    function test_get_method_same_as_count_getter() public {
-        Counter counter = new Counter();
-        assertEq(counter.count(), counter.get());
+    function test_can_get() public view {
+        assertEq(obj.get(), 0);
     }
 
     function test_can_increment() public {
-        Counter counter = new Counter();
-        assertEq(counter.count(), 0);
-        counter.inc();
-        assertEq(counter.count(), 1);
-    }
-
-    function cannot_decrement_zero() public {
-        Counter counter = new Counter();
-        assertEq(counter.count(), 0);
-        vm.expectRevert();
-        counter.dec();
+        assertEq(obj.count(), 0);
+        obj.inc();
+        assertEq(obj.count(), 1);
     }
 
     function can_decrement() public {
-        Counter counter = new Counter();
-        assertEq(counter.count(), 0);
-        counter.inc();
-        counter.inc();
-        assertEq(counter.count(), 2);
-        counter.dec();
-        assertEq(counter.count(), 1);
+        assertEq(obj.count(), 0);
+        obj.inc();
+        obj.inc();
+        assertEq(obj.count(), 2);
+        obj.dec();
+        assertEq(obj.count(), 1);
+    }
+
+    function cannot_decrement_zero() public {
+        assertEq(obj.count(), 0);
+        vm.expectRevert();
+        obj.dec();
     }
 }
