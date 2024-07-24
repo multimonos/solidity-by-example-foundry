@@ -3,7 +3,7 @@
 test:
 	forge test
 watch:
-	forge test -vvvv
+	forge test -vv --watch
 coverage:
 	forge coverage --report=summary
 debug:
