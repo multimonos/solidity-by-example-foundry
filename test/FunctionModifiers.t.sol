@@ -34,7 +34,7 @@ contract FunctionModifiers {
     }
 }
 
-contract TestFunctionModifiers is Test {
+contract FunctionModifiersTest is Test {
 
     FunctionModifiers fm;
     address owner;

@@ -26,7 +26,7 @@ contract D is A, B {
     }
 }
 
-contract TestContstructors is Test {
+contract ContstructorsTest is Test {
 
     function test_constructor_is_optional() public {
         A a = new A();

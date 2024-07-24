@@ -3,7 +3,7 @@ pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
 
-contract TestArrays is Test {
+contract ArraysTest is Test {
 
     uint256[] public a = [1, 2, 3]; // dynamic literal assign in storage only
 

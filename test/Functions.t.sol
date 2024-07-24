@@ -5,7 +5,7 @@ import {Test} from "forge-std/Test.sol";
 import {Functions} from "../src/Functions.sol";
 
 
-contract TestFunctions is Test {
+contract FunctionsTest is Test {
 
     Functions f;
 

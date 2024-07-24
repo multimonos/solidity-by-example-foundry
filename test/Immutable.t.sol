@@ -5,7 +5,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {Immutables} from "../src/Immutables.sol";
 
 
-contract TestImmutables is Test {
+contract ImmutablesTest is Test {
 
     Immutables public obj;
     address public owner = makeAddr("owner");

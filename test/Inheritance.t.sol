@@ -34,7 +34,7 @@ contract E is C, B {
     }
 }
 
-contract TestInheritance is Test {
+contract InheritanceTest is Test {
 
     function test_ace_is_base() public {
         Ace a = new Ace();

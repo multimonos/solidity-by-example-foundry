@@ -5,7 +5,7 @@ import {Test, console} from "forge-std/Test.sol";
 import {PrimitiveDataTypes} from "../src/PrimitiveDataTypes.sol";
 
 
-contract TestPrimitives is Test {
+contract PrimitivesTest is Test {
 
     PrimitiveDataTypes public obj;
 
