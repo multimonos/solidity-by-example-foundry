@@ -31,7 +31,7 @@ contract FirstApplicationTest is Test {
         assertEq(obj.count(), 1);
     }
 
-    function can_decrement() public {
+    function test_can_decrement() public {
         assertEq(obj.count(), 0);
         obj.inc();
         obj.inc();
@@ -40,7 +40,7 @@ contract FirstApplicationTest is Test {
         assertEq(obj.count(), 1);
     }
 
-    function cannot_decrement_zero() public {
+    function test_cannot_decrement_zero() public {
         assertEq(obj.count(), 0);
         vm.expectRevert();
         obj.dec();
