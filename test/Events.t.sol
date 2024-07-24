@@ -93,5 +93,17 @@ contract EventsTest is Test, CustomEvents {
             true
         );
     }
+
+    function test_sequence_of_events() public {
+        vm.expectEmit(address(radio));
+        emit Four();
+        vm.expectEmit(address(radio));
+        emit Two();
+        vm.expectEmit(address(radio));
+        emit One();
+        vm.expectEmit(address(radio));
+        emit Three();
+        radio.emitMany();
+    }
 }
 

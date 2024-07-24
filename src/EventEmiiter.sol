@@ -6,6 +6,10 @@ contract CustomEvents {
     event SimpleEvent();
     event EventWithData(bool isCrowded, uint8 numberPeople);
     event IndexedTopicEvent(address indexed from, address to, bool isFriendly);
+    event One();
+    event Two();
+    event Three();
+    event Four();
 }
 
 contract EventEmitter is CustomEvents {
@@ -20,5 +24,12 @@ contract EventEmitter is CustomEvents {
 
     function emitIndexedTopicEvent(address from, address to, bool isFriendly) external {
         emit IndexedTopicEvent(from, to, isFriendly);
+    }
+
+    function emitMany() external {
+        emit Four();
+        emit Two();
+        emit One();
+        emit Three();
     }
 }
