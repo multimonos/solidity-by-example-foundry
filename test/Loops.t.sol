@@ -12,7 +12,7 @@ contract LoopsTest is Test {
         obj = new Loop();
     }
 
-    function test_loop() public {
+    function test_loop() public view {
         assertTrue(obj.loop() == 10);
     }
 
