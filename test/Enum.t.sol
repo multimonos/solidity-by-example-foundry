@@ -31,4 +31,9 @@ contract OrderTest is Test {
         obj.reset();
         assertTrue(obj.get() == Order.Status.Pending); // first value in Order.Status
     }
+
+    function test_cancel() public {
+       obj.cancel();
+        assertTrue(obj.status()==Order.Status.Canceled);
+    }
 }
