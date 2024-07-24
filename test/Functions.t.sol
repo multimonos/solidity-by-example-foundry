@@ -7,7 +7,7 @@ import {Functions} from "../src/Functions.sol";
 
 contract FunctionsTest is Test {
 
-    Functions f;
+    Functions public f;
 
     function setUp() public {
         f = new Functions();

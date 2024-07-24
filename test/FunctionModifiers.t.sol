@@ -2,71 +2,43 @@
 pragma solidity ^0.8.20;
 
 import {Test} from "forge-std/Test.sol";
-
-contract FunctionModifiers {
-
-    address public owner;
-    address public friend;
-
-    error NotOwner();
-    error InvalidAddress(address);
-
-    modifier onlyOwner() {
-        if (owner != msg.sender) revert NotOwner();
-        _;
-    }
-
-    modifier validAddress(address _address) {
-        if (_address == address(0)) revert InvalidAddress(_address);
-        _;
-    }
-
-    constructor() {
-        owner = msg.sender;
-    }
-
-    function changeOwner(address _newOwner) public onlyOwner {
-        owner = _newOwner;
-    }
-
-    function friendly(address _address) public validAddress(_address) {
-        friend = _address;
-    }
-}
+import {FunctionModifiers} from "../src/FunctionModifiers.sol";
 
 contract FunctionModifiersTest is Test {
 
-    FunctionModifiers fm;
-    address owner;
+    FunctionModifiers public fm;
+    address public owner = makeAddr("owner");
+    address public notOwner = makeAddr("not_owner");
+    address public friend = address(3);
+    address public enemy = address(0);
 
     function setUp() public {
-        owner = address(3);
         vm.prank(owner);
         fm = new FunctionModifiers();
     }
 
-    function test_only_owner_modifier_pass() public {
+    function test_only_owner_can_change_owner() public {
         vm.prank(owner);
-        fm.changeOwner(address(5));
-        assertTrue(fm.owner() == address(5));
+        fm.changeOwner(notOwner);
+        assertTrue(fm.owner() == notOwner);
     }
 
-    function test_only_owner_modifier_fail() public {
+    function test_revert_if_other_changes_owner() public {
         vm.expectRevert(FunctionModifiers.NotOwner.selector);
-        vm.prank(address(4));
-        fm.changeOwner(address(4));
+        vm.prank(notOwner);
+        fm.changeOwner(notOwner);
     }
 
-    function test_valid_address_modifier_pass() public {
-        fm.friendly(address(3));
-        assert(fm.friend() == address(3));
+    function test_friendly_if_not_zero_address() public {
+        fm.friendly(friend);
+        assert(fm.friend() == friend);
     }
 
-    function test_valid_address_modifier_fail() public {
+    function test_zero_address_is_not_friendly() public {
         vm.expectRevert(
-            abi.encodeWithSelector(FunctionModifiers.InvalidAddress.selector, address(0))
+            abi.encodeWithSelector(FunctionModifiers.InvalidAddress.selector, enemy)
         );
-        fm.friendly(address(0));
+        fm.friendly(enemy);
     }
 }
 
