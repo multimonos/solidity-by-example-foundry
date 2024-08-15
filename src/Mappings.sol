@@ -6,6 +6,7 @@ contract BasicMapping {
     mapping(address => uint256) public myMap;
 
     function get(address addr) public view returns (uint256) {
+        // access not available for myMap('address')
         return myMap[addr];
     }
 
